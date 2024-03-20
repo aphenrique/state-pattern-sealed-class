@@ -13,6 +13,18 @@ class _HomePageState extends State<HomePage> {
   final controller = HomeController();
 
   @override
+  void initState() {
+    super.initState();
+
+    controller.addListener(switch (controller.value) {
+      HomeSuccessState() => fakeTracking,
+      _ => () {},
+    });
+  }
+
+  void fakeTracking() {}
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: Center(
