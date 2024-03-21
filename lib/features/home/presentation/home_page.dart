@@ -20,14 +20,23 @@ class _HomePageState extends State<HomePage> {
     debugPrint('FAIÔ');
   }
 
+  void track() {
+    controller.value.track<HomeSuccessState>(trackingSuccess);
+    controller.value.track<HomeFailureState>(trackingFail);
+  }
+
   @override
   void initState() {
     super.initState();
 
-    controller.addListener(() {
-      controller.value.track<HomeSuccessState>(trackingSuccess);
-      controller.value.track<HomeFailureState>(trackingFail);
-    });
+    controller.addListener(track);
+  }
+
+  @override
+  void dispose() {
+    controller.removeListener(track);
+
+    super.dispose();
   }
 
   @override
