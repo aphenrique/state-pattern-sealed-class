@@ -12,17 +12,23 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   final controller = HomeController();
 
+  void trackingSuccess() {
+    debugPrint('SUCESSO');
+  }
+
+  void trackingFail() {
+    debugPrint('FAIÔ');
+  }
+
   @override
   void initState() {
     super.initState();
 
-    controller.addListener(switch (controller.value) {
-      HomeSuccessState() => fakeTracking,
-      _ => () {},
+    controller.addListener(() {
+      controller.value.track<HomeSuccessState>(trackingSuccess);
+      controller.value.track<HomeFailureState>(trackingFail);
     });
   }
-
-  void fakeTracking() {}
 
   @override
   Widget build(BuildContext context) {

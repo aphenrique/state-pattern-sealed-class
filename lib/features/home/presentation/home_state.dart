@@ -1,4 +1,6 @@
-sealed class HomeState {}
+import 'base_state.dart';
+
+sealed class HomeState extends BaseState {}
 
 class HomeEmptyState extends HomeState {}
 
