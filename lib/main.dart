@@ -1,17 +1,20 @@
 import 'package:flutter/material.dart';
+import 'package:state_management/features/home/presentation/home_controller.dart';
 import 'package:state_management/features/home/presentation/home_page.dart';
 
 void main() {
-  runApp(const MainApp());
+  runApp(MainApp());
 }
 
 class MainApp extends StatelessWidget {
-  const MainApp({super.key});
+  MainApp({super.key});
+
+  final controller = HomeController();
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
-      home: HomePage(),
+    return MaterialApp(
+      home: HomePage(controller: controller),
     );
   }
 }

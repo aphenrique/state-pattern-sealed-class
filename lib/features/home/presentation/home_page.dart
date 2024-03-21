@@ -3,14 +3,19 @@ import 'package:state_management/features/home/presentation/home_controller.dart
 import 'package:state_management/features/home/presentation/home_state.dart';
 
 class HomePage extends StatefulWidget {
-  const HomePage({super.key});
+  const HomePage({
+    super.key,
+    required this.controller,
+  });
+
+  final HomeController controller;
 
   @override
   State<HomePage> createState() => _HomePageState();
 }
 
 class _HomePageState extends State<HomePage> {
-  final controller = HomeController();
+  HomeController get controller => widget.controller;
 
   void trackingSuccess() {
     debugPrint('SUCESSO');
@@ -67,13 +72,21 @@ class _HomePageState extends State<HomePage> {
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: [
             ElevatedButton(
-                onPressed: controller.empty, child: const Text('Empty')),
+                key: const Key('empty'),
+                onPressed: controller.empty,
+                child: const Text('Empty')),
             ElevatedButton(
-                onPressed: controller.loading, child: const Text('Loading')),
+                key: const Key('loading'),
+                onPressed: controller.loading,
+                child: const Text('Loading')),
             ElevatedButton(
-                onPressed: controller.failure, child: const Text('Failure')),
+                key: const Key('failure'),
+                onPressed: controller.failure,
+                child: const Text('Failure')),
             ElevatedButton(
-                onPressed: controller.success, child: const Text('Success')),
+                key: const Key('success'),
+                onPressed: controller.success,
+                child: const Text('Success')),
           ],
         ),
       ),
